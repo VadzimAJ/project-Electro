@@ -19,9 +19,13 @@ import Button from '@mui/material/Button';
 
 type StoreBarProps = {
   electroProducts: ElectroProductsType[];
+  upCounter: (count: number, id: string) => void
 };
 
-export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts }) => {
+export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }) => {
+
+  
+
   return (
     <TableContainer component={Paper} sx={{ maxWidth: '80%', margin: 'auto', mt: 4 }}>
       <Table aria-label="collapsible table">
@@ -35,7 +39,7 @@ export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts }) => {
         </TableHead>
         <TableBody>
           {electroProducts.map((product, index) => (
-            <Row key={index} product={product} />
+            <Row key={index} product={product} upCounter={upCounter}/>
           ))}
         </TableBody>
       </Table>
@@ -45,12 +49,17 @@ export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts }) => {
 
 type RowProps = {
   product: ElectroProductsType;
+  upCounter: (count: number, id: string) => void
 };
 
-const Row: React.FC<RowProps> = ({ product }) => {
+const Row: React.FC<RowProps> = ({ product,  upCounter}) => {
   const [open, setOpen] = React.useState(false);
+  const consoleLogButtonHandler = (count: number, id: string) => {
+    upCounter(count, id )
+  }
 
   return (
+
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
@@ -73,6 +82,11 @@ const Row: React.FC<RowProps> = ({ product }) => {
               <Button variant="outlined" size="small">
                 +
               </Button>
+
+              <Button variant="outlined" size="small" onClick={() => {consoleLogButtonHandler(1, product.id)}}>
+                console.log
+              </Button>
+
         </TableCell>
         
       </TableRow>

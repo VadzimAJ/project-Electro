@@ -6,6 +6,7 @@ import { StoreBar } from './StoreBar';
 import { v1 } from 'uuid';
 
 export type ElectroProductsType = {
+  id: string
   name: string
   cost: number
   count: number
@@ -21,13 +22,27 @@ function App() {
   ])
 
 
-  const upCounter = (count: number) => {
-  }
+  const upCounter = (count: number, id: string) => {
+    setElectroProducts((prevProducts) =>
+      prevProducts.map((product:ElectroProductsType) =>
+        {
+          if (product.id === id) {
+            console.log(`Updating product with id: ${product.id}`);
+            return { ...product, count: product.count + count };
+          }
+          return product;
+        }
+      )
+    );
+    
+  };
+
   return (
     <div className="App">
       <HeaderBar/>
       <StoreBar
         electroProducts = {electroProducts}
+        upCounter = {upCounter}
       />
     </div>
     
