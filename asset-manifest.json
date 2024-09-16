@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/project-Electro/static/css/main.5af5cf47.css",
-    "main.js": "/project-Electro/static/js/main.ee9e33cc.js",
+    "main.js": "/project-Electro/static/js/main.b45ea4dd.js",
     "static/js/453.497883ba.chunk.js": "/project-Electro/static/js/453.497883ba.chunk.js",
     "index.html": "/project-Electro/index.html",
     "main.5af5cf47.css.map": "/project-Electro/static/css/main.5af5cf47.css.map",
-    "main.ee9e33cc.js.map": "/project-Electro/static/js/main.ee9e33cc.js.map",
+    "main.b45ea4dd.js.map": "/project-Electro/static/js/main.b45ea4dd.js.map",
     "453.497883ba.chunk.js.map": "/project-Electro/static/js/453.497883ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5af5cf47.css",
-    "static/js/main.ee9e33cc.js"
+    "static/js/main.b45ea4dd.js"
   ]
 }
