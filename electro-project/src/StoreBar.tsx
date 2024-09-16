@@ -19,7 +19,7 @@ import Button from '@mui/material/Button';
 
 type StoreBarProps = {
   electroProducts: ElectroProductsType[];
-  upCounter: (count: number, id: string) => void
+  upCounter: ( id: string) => void
 };
 
 export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }) => {
@@ -49,13 +49,13 @@ export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }
 
 type RowProps = {
   product: ElectroProductsType;
-  upCounter: (count: number, id: string) => void
+  upCounter: (id: string) => void
 };
 
 const Row: React.FC<RowProps> = ({ product,  upCounter}) => {
   const [open, setOpen] = React.useState(false);
-  const consoleLogButtonHandler = (count: number, id: string) => {
-    upCounter(count, id )
+  const consoleLogButtonHandler = (id: string) => {
+    upCounter(id)
   }
 
   return (
@@ -83,7 +83,7 @@ const Row: React.FC<RowProps> = ({ product,  upCounter}) => {
                 +
               </Button>
 
-              <Button variant="outlined" size="small" onClick={() => {consoleLogButtonHandler(1, product.id)}}>
+              <Button variant="outlined" size="small" onClick={() => {consoleLogButtonHandler(product.id)}}>
                 console.log
               </Button>
 
