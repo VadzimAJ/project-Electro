@@ -37,12 +37,28 @@ function App() {
     
   };
 
+  const minusCounter = (id: string) => {
+    setElectroProducts((prevProducts) =>
+        prevProducts.map((product:ElectroProductsType) =>
+            {
+              if (product.id === id ) {
+                console.log(`Updating product with id: ${product.id}`);
+                return { ...product, count: product.count - 1 };
+              }
+              return product;
+            }
+        )
+    );
+
+  };
+
   return (
     <div className="App">
       <HeaderBar/>
       <StoreBar
         electroProducts = {electroProducts}
         upCounter = {upCounter}
+        minusCounter = {minusCounter}
       />
     </div>
     

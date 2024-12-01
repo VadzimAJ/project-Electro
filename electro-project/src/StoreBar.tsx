@@ -20,9 +20,10 @@ import Button from '@mui/material/Button';
 type StoreBarProps = {
   electroProducts: ElectroProductsType[];
   upCounter: ( id: string) => void
+  minusCounter: ( id: string) => void
 };
 
-export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }) => {
+export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter, minusCounter }) => {
 
   
 
@@ -39,7 +40,7 @@ export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }
         </TableHead>
         <TableBody>
           {electroProducts.map((product, index) => (
-            <Row key={index} product={product} upCounter={upCounter}/>
+            <Row key={index} product={product} upCounter={upCounter} minusCounter={minusCounter}/>
           ))}
         </TableBody>
       </Table>
@@ -48,14 +49,19 @@ export const StoreBar: React.FC<StoreBarProps> = ({ electroProducts, upCounter }
 };
 
 type RowProps = {
-  product: ElectroProductsType;
+  product: ElectroProductsType
   upCounter: (id: string) => void
+  minusCounter: ( id: string) => void
 };
 
-const Row: React.FC<RowProps> = ({ product,  upCounter}) => {
+const Row: React.FC<RowProps> = ({ product,  upCounter, minusCounter}) => {
   const [open, setOpen] = React.useState(false);
-  const consoleLogButtonHandler = (id: string) => {
+  const upButtonHandler = (id: string) => {
     upCounter(id)
+  }
+
+  const minusButtonHandler = (id:string) => {
+    minusCounter(id)
   }
 
   return (
@@ -76,15 +82,14 @@ const Row: React.FC<RowProps> = ({ product,  upCounter}) => {
         <TableCell className ='tabe-count' align="right">
             {product.count}
             {' '}
-              <Button onClick={()=>{alert("Hello!")}} variant="outlined" size="small">
-                -
-              </Button>
-              <Button variant="outlined" size="small">
-                +
-              </Button>
+            {product.count < 1 ? <Button variant="outlined" size="small" disabled >
+              -
+            </Button> : <Button variant="outlined" size="small" onClick={() => {minusButtonHandler(product.id)}} >
+              -
+            </Button>}
 
-              <Button variant="outlined" size="small" onClick={() => {consoleLogButtonHandler(product.id)}}>
-                console.log
+              <Button variant="outlined" size="small" onClick={() => {upButtonHandler(product.id)}}>
+                +
               </Button>
 
         </TableCell>
